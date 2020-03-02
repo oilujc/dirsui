@@ -1,0 +1,56 @@
+<section class="dirs container-fluid">
+  <div class="row">
+    <div class="col-lg-3">
+      <div class="box">
+        <ul class="directory-list">
+          <ng-template #recursiveList let-buckets>
+            <li class="folder" *ngFor="let bucket of buckets">
+              <a (click)="setBucket(bucket.slug)">{{bucket.name}}</a>
+              <ul *ngIf="bucket.childs.length > 0">
+                <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: bucket.childs }"></ng-container>
+              </ul>
+            </li>
+          </ng-template>
+          <ng-container *ngTemplateOutlet="recursiveList; context:{ $implicit: buckets }"></ng-container>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-9">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Library</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+      </nav>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Filename</th>
+            <th scope="col">Type</th>
+            <th scope="col">Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let bucket of selectedBucket?.childs">
+            <th scope="row">
+              <img src="assets/icons/folder.svg" alt="">
+            </th>
+            <td><a (click)="setBucket(bucket.slug)">{{bucket.name}}</a></td>
+            <td>Directory</td>
+            <td>0</td>
+          </tr>
+          <tr *ngFor="let image of selectedBucket?.images">
+            <th scope="row">
+              <img src="assets/icons/folder.svg" alt="">
+            </th>
+            <td><a>{{image.name}}</a></td>
+            <td>Image</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

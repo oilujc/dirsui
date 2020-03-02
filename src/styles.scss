@@ -1,1 +1,17 @@
+@import './assets/styles/variables';
+
 /* You can add global styles to this file, and also import other style files */
+* {
+    color: $gray;
+}
+
+a {
+    color: $gray;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: $dark-gray;
+    }
+}
