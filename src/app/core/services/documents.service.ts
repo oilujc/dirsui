@@ -23,11 +23,11 @@ export class DocumentsService {
         return this.http.post(`${environment.apiUrl}/documents/bucket/`, data);
     }
 
-    /* putBucket(data) {
-        return this.http.post(`${environment.apiUrl}/documents/bucket/`);
+    putBucket(slug, data) {
+        return this.http.put(`${environment.apiUrl}/documents/bucket/${slug}/`, data);
     }
 
-    deleteBucket(data) {
-        return this.http.post(`${environment.apiUrl}/documents/bucket/`);
-    } */
+    deleteBucket(slug) {
+        return this.http.delete(`${environment.apiUrl}/documents/bucket/${slug}/`);
+    }
 }

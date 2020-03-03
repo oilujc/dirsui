@@ -1,0 +1,29 @@
+<div class="uploader">
+  <div class="dropzone" appDnd (fileDropped)="onFileDropped($event)">
+    <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
+    <img src="assets/icons/data.svg" alt="">
+    
+    <h3>Drag and drop file here</h3>
+    <h3>or</h3>
+    <label for="fileDropRef">Browse for file</label>
+  </div>
+  <div class="files-list">
+    <div class="single-file" *ngFor="let file of files; let i = index">
+      <div class="file-icon">
+        <img src="assets/icons/file.svg" height="30px" alt="">
+      </div>
+      <div class="info">
+        <h4 class="name">
+          {{ file?.name }}
+        </h4>
+        <p class="size">
+          {{ formatBytes(file?.size) }}
+        </p>
+        <app-progress [progress]="file?.progress"></app-progress>
+      </div>
+      <div class="delete" (click)="deleteFile(i)">
+        <img src="assets/icons/close.svg" width="18px" height="18px" alt="">
+      </div>
+    </div>
+  </div>
+</div>
